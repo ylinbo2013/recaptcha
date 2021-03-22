@@ -2,8 +2,8 @@
 
 namespace Combindma\Recaptcha\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Combindma\Recaptcha\RecaptchaServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
