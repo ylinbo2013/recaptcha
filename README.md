@@ -1,4 +1,4 @@
-# Simple and painless Google reCAPTCHA package for Laravel framework
+# Google reCAPTCHA V3 Package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/combindma/recaptcha.svg?style=flat-square)](https://packagist.org/packages/combindma/recaptcha)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/combindma/recaptcha/run-tests?label=tests)](https://github.com/combindma/recaptcha/actions?query=workflow%3ATests+branch%3Amaster)
@@ -6,7 +6,9 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/combindma/recaptcha.svg?style=flat-square)](https://packagist.org/packages/combindma/recaptcha)
 
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Simple and painless Google reCAPTCHA V3 package for Laravel framework.
+
+Inspired from: https://github.com/biscolab/laravel-recaptcha
 
 ## Installation
 
@@ -14,13 +16,6 @@ You can install the package via composer:
 
 ```bash
 composer require combindma/recaptcha
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="recaptcha-migrations"
-php artisan migrate
 ```
 
 You can publish the config file with:
@@ -32,6 +27,14 @@ This is the contents of the published config file:
 
 ```php
 return [
+    //The name used in name and id input form
+    'token_name' => env('RECAPTCHA_NAME', 'recaptcha_token'),
+
+    'api_site_key' => env('RECAPTCHA_SITE_KEY', ''),
+
+    'api_secret_key' => env('RECAPTCHA_SECRET_KEY', ''),
+
+    'enabled' => env('RECAPTCHA_ENABLED', 'true'),
 ];
 ```
 
