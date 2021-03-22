@@ -1,16 +1,16 @@
 {
-    "name": ":vendor_name/:package_name",
-    "description": ":package_description",
+    "name": "combindma/recaptcha",
+    "description": "Simple and painless Google reCAPTCHA package for Laravel framework",
     "keywords": [
-        ":vendor_name",
-        ":package_name"
+        "combindma",
+        "recaptcha"
     ],
-    "homepage": "https://github.com/:vendor_name/:package_name",
+    "homepage": "https://github.com/combindma/recaptcha",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
+            "name": "Combind",
+            "email": "hello@combind.ma",
             "role": "Developer"
         }
     ],
@@ -22,18 +22,17 @@
     "require-dev": {
         "orchestra/testbench": "^6.13",
         "phpunit/phpunit": "^9.3",
-        "spatie/laravel-ray": "^1.9",
         "vimeo/psalm": "^4.4"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src",
-            "Spatie\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Combindma\\Recaptcha\\": "src",
+            "Combindma\\Recaptcha\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Combindma\\Recaptcha\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "Combindma\\Recaptcha\\RecaptchaServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "Recaptcha": "Combindma\\Recaptcha\\RecaptchaFacade"
             }
         }
     },

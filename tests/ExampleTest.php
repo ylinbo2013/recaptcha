@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace Combindma\Recaptcha\Tests;
 
 class ExampleTest extends TestCase
 {
