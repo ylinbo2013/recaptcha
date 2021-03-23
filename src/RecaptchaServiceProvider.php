@@ -7,6 +7,11 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class RecaptchaServiceProvider extends PackageServiceProvider
 {
+    public function packageRegistered()
+    {
+        require_once(__DIR__.'/helpers.php');
+    }
+
     public function configurePackage(Package $package): void
     {
         /*
