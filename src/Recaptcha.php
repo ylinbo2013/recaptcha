@@ -89,7 +89,7 @@ class Recaptcha
      */
     public function validate($response)
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return [
                 'score' => 0.9,
                 'success' => true,
@@ -135,7 +135,7 @@ class Recaptcha
      */
     public function htmlScriptTagJsApi(?array $configuration = []): string
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return '';
         }
 
@@ -162,7 +162,7 @@ class Recaptcha
     public function recaptchaInput(): string
     {
         $token_name = config('recaptcha.token_name');
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return "<input type=\"hidden\" name=\"{$token_name}\" id=\"{$token_name}\" value=\"token\">";
         }
 
