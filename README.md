@@ -106,9 +106,8 @@ Insert recaptchaInput() helper inside your form tag.
 
 ### Validate the token 
 
-Add the rule RecaptchaRule() in your validation rules request or in your controller 
+Add the rule 'recaptcha' in your validation rules request or in your controller 
 ```php
- use Combindma\Recaptcha\Rules\RecaptchaRule;
  
  $request->validate([
        //... other rules
