@@ -3,7 +3,6 @@
 
 namespace Combindma\Recaptcha\Rules;
 
-
 use Illuminate\Contracts\Validation\Rule;
 
 class RecaptchaRule implements Rule

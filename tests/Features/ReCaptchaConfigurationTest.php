@@ -2,7 +2,6 @@
 
 namespace Combindma\Recaptcha\Tests\Features;
 
-
 use Combindma\Recaptcha\Tests\TestCase;
 
 class ReCaptchaConfigurationTest extends TestCase
@@ -14,11 +13,13 @@ class ReCaptchaConfigurationTest extends TestCase
         $app['config']->set('recaptcha.curl_timeout', 3);
     }
 
-    public function testGetApiSiteKey() {
+    public function testGetApiSiteKey()
+    {
         $this->assertEquals("api_site_key", $this->recaptcha->getApiSiteKey());
     }
 
-    public function testGetApiSecretKey() {
+    public function testGetApiSecretKey()
+    {
         $this->assertEquals("api_secret_key", $this->recaptcha->getApiSecretKey());
     }
 
