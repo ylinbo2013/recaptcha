@@ -2,6 +2,7 @@
 
 namespace Combindma\Recaptcha;
 
+use Combindma\Recaptcha\Rules\RecaptchaRule;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -18,5 +19,12 @@ class RecaptchaServiceProvider extends PackageServiceProvider
             ->name('recaptcha')
             ->hasConfigFile()
             ->hasTranslations();
+    }
+
+    public function packageBooted()
+    {
+        parent::packageBooted();
+
+        $this->app['validator']->extend('recaptcha', RecaptchaRule::class);
     }
 }
