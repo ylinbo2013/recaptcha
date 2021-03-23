@@ -38,12 +38,14 @@ class Recaptcha
     public function setApiSiteKey(string $api_site_key): self
     {
         $this->api_site_key = $api_site_key;
+
         return $this;
     }
 
     public function setApiSecretKey(string $api_secret_key): self
     {
         $this->api_secret_key = $api_secret_key;
+
         return $this;
     }
 
@@ -55,6 +57,7 @@ class Recaptcha
     public function setApiDomain(?string $api_domain = null): self
     {
         $this->api_domain = $api_domain ?? config('recaptcha.api_domain', self::DEFAULT_RECAPTCHA_API_DOMAIN);
+
         return $this;
     }
 

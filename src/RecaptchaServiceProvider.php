@@ -14,7 +14,7 @@ class RecaptchaServiceProvider extends ServiceProvider
         $this->addValidationRule();
         $this->publishes([
             $this->config => config_path('recaptcha.php'),
-        ],'config');
+        ], 'config');
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'recaptcha');
     }
@@ -22,7 +22,8 @@ class RecaptchaServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            $this->config, 'recaptcha'
+            $this->config,
+            'recaptcha'
         );
 
         $this->registerReCaptchaBuilder();
@@ -45,7 +46,6 @@ class RecaptchaServiceProvider extends ServiceProvider
      */
     protected function registerReCaptchaBuilder()
     {
-
         $this->app->singleton('recaptcha', function () {
             return new Recaptcha();
         });

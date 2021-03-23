@@ -1,6 +1,6 @@
 <?php
 
-if (!function_exists('recaptcha')) {
+if (! function_exists('recaptcha')) {
     function recaptcha(): \Combindma\Recaptcha\Recaptcha
     {
         return app('recaptcha');
