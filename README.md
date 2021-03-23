@@ -20,7 +20,7 @@ composer require combindma/recaptcha
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="recaptcha-config"
 ```
 
 This is the contents of the published config file:
@@ -73,7 +73,7 @@ return [
 
 You can publish the translations file with:
 ```bash
-php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="translations"
+php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="recaptcha-translations"
 ```
 
 This is the contents of the published translations file:
@@ -114,7 +114,7 @@ Add the rule RecaptchaRule() in your validation rules request or in your control
        //... other rules
        
        //Add this to your validation rule
-       config('recaptcha.token_name') => ['required','string', new RecaptchaRule()]
+       config('recaptcha.token_name') => ['required','string', 'recaptcha']
        ]);
 ```
 If the validation fails, an error will be returned.
