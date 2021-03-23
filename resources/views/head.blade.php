@@ -1,0 +1,1 @@
+{!! htmlScriptTagJsApi($config??[]) !!}
