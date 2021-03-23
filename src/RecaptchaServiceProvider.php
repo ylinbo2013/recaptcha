@@ -2,29 +2,52 @@
 
 namespace Combindma\Recaptcha;
 
-use Combindma\Recaptcha\Rules\RecaptchaRule;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 
-class RecaptchaServiceProvider extends PackageServiceProvider
+class RecaptchaServiceProvider extends ServiceProvider
 {
-    public function configurePackage(Package $package): void
+    protected $config = __DIR__.'/../config/recaptcha.php';
+
+    public function boot()
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
-        $package
-            ->name('recaptcha')
-            ->hasConfigFile()
-            ->hasTranslations();
+        $this->addValidationRule();
+        $this->publishes([
+            $this->config => config_path('recaptcha.php'),
+        ],'config');
+
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'recaptcha');
     }
 
-    public function packageBooted()
+    public function register()
     {
-        parent::packageBooted();
+        $this->mergeConfigFrom(
+            $this->config, 'recaptcha'
+        );
 
-        $this->app['validator']->extend('recaptcha', RecaptchaRule::class);
+        $this->registerReCaptchaBuilder();
+    }
+
+    /**
+     * Extends Validator to include a recaptcha type
+     */
+    public function addValidationRule()
+    {
+        Validator::extendImplicit('recaptcha', function ($attribute, $value) {
+            return app('recaptcha')->validate($value)['success'];
+        }, __('recaptcha::messages.invalid'));
+    }
+
+    /**
+     * Register the HTML builder instance.
+     *
+     * @return void
+     */
+    protected function registerReCaptchaBuilder()
+    {
+
+        $this->app->singleton('recaptcha', function () {
+            return new Recaptcha();
+        });
     }
 }

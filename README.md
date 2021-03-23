@@ -20,7 +20,7 @@ composer require combindma/recaptcha
 
 You can publish the config file with:
 ```bash
-php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="recaptcha-config"
+php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="config"
 ```
 
 This is the contents of the published config file:
@@ -73,7 +73,7 @@ return [
 
 You can publish the translations file with:
 ```bash
-php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="recaptcha-translations"
+php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="translations"
 ```
 
 This is the contents of the published translations file:
