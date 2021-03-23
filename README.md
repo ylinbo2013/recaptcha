@@ -8,7 +8,7 @@
 
 Simple and painless Google reCAPTCHA V3 package for Laravel framework.
 
-Inspired from: https://github.com/biscolab/laravel-recaptcha
+Inspired by: https://github.com/biscolab/laravel-recaptcha
 
 ## Installation
 
@@ -65,7 +65,7 @@ return [
      */
     'api_domain' => 'www.google.com',
 
-    //you can disable the ReCaptcha in for your tests
+    //you can disable the ReCaptcha when you test your application
     'enabled' => env('RECAPTCHA_ENABLED', 'true'),
     
 ];

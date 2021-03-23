@@ -42,6 +42,6 @@ return [
      */
     'api_domain' => 'www.google.com',
 
-    //you can disable the ReCaptcha in for your tests
+    //you can disable the ReCaptcha when you test your application
     'enabled' => env('RECAPTCHA_ENABLED', 'true'),
 ];

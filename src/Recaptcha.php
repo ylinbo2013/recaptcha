@@ -24,10 +24,13 @@ class Recaptcha
     //The URI of the API Javascript file to embed in you pages
     protected $api_js_url = '';
 
+    protected $enabled;
+
     public function __construct()
     {
         $this->setApiSiteKey(config('recaptcha.api_site_key'));
         $this->setApiSecretKey(config('recaptcha.api_secret_key'));
+        $this->enabled = config('recaptcha.enabled');
     }
 
     public function setApiSiteKey(string $api_site_key): self
@@ -86,7 +89,7 @@ class Recaptcha
      */
     public function validate($response)
     {
-        if (! config('recaptcha.enabled')) {
+        if (!$this->enabled) {
             return [
                 'score' => 0.9,
                 'success' => true,
@@ -132,7 +135,7 @@ class Recaptcha
      */
     public function htmlScriptTagJsApi(?array $configuration = []): string
     {
-        if (! config('recaptcha.enabled')) {
+        if (!$this->enabled) {
             return '';
         }
 
@@ -159,7 +162,7 @@ class Recaptcha
     public function recaptchaInput(): string
     {
         $token_name = config('recaptcha.token_name');
-        if (! config('recaptcha.enabled')) {
+        if (!$this->enabled) {
             return "<input type=\"hidden\" name=\"{$token_name}\" id=\"{$token_name}\" value=\"token\">";
         }
 
