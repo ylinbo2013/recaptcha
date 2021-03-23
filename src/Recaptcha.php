@@ -31,6 +31,8 @@ class Recaptcha
         $this->setApiSiteKey(config('recaptcha.api_site_key'));
         $this->setApiSecretKey(config('recaptcha.api_secret_key'));
         $this->enabled = config('recaptcha.enabled');
+        $this->setApiDomain();
+        $this->setApiUrls();
     }
 
     public function setApiSiteKey(string $api_site_key): self
@@ -139,7 +141,6 @@ class Recaptcha
             return '';
         }
 
-        $this->setApiUrls();
         $html = "<script src=\"" . $this->api_js_url . "?render={$this->api_site_key}\"></script>";
         $action = Arr::get($configuration, 'action', 'homepage');
         $token_name = config('recaptcha.token_name');
