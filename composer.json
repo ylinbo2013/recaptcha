@@ -31,7 +31,7 @@
             "Combindma\\Recaptcha\\": "src"
         },
         "files": [
-            "src/Helpers.php"
+            "src/helpers.php"
         ]
     },
     "autoload-dev": {
