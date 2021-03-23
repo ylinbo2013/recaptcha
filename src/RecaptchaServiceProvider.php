@@ -17,7 +17,6 @@ class RecaptchaServiceProvider extends PackageServiceProvider
         $package
             ->name('recaptcha')
             ->hasConfigFile()
-            ->hasViews()
             ->hasTranslations();
     }
 }
