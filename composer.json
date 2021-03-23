@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Combindma\\Recaptcha\\": "src"
+            "Combindma\\Recaptcha\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -36,7 +36,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Combindma\\Recaptcha\\Tests\\": "tests"
+            "Combindma\\Recaptcha\\Tests\\": "tests/"
         }
     },
     "scripts": {
