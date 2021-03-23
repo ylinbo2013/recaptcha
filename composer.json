@@ -2,7 +2,7 @@
     "name": "combindma/recaptcha",
     "description": "Simple and painless Google reCAPTCHA V3 package for Laravel framework",
     "keywords": [
-        "combindma",
+        "combind",
         "recaptcha"
     ],
     "homepage": "https://github.com/combindma/recaptcha",
@@ -16,6 +16,7 @@
     ],
     "require": {
         "php": "^8.0",
+        "ext-curl": "*",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^8.0"
     },
@@ -28,7 +29,10 @@
     "autoload": {
         "psr-4": {
             "Combindma\\Recaptcha\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

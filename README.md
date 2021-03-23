@@ -27,23 +27,97 @@ This is the contents of the published config file:
 
 ```php
 return [
-    //The name used in name and id input form
+
+    //The name of the input used to send Google reCAPTCHA token to verify
     'token_name' => env('RECAPTCHA_NAME', 'recaptcha_token'),
 
+    /**
+     *
+     * The site key
+     * get site key @ www.google.com/recaptcha/admin
+     *
+     */
     'api_site_key' => env('RECAPTCHA_SITE_KEY', ''),
 
+    /**
+     *
+     * The secret key
+     * get secret key @ www.google.com/recaptcha/admin
+     *
+     */
     'api_secret_key' => env('RECAPTCHA_SECRET_KEY', ''),
 
+    /**
+     *
+     * The curl timout in seconds to validate a recaptcha token
+     *
+     */
+    'curl_timeout' => 10,
+
+    /**
+     *
+     * Set API domain. You can use "www.recaptcha.net" in case "www.google.com" is not accessible.
+     * (no check will be made on the entered value)
+     * @see   https://developers.google.com/recaptcha/docs/faq#can-i-use-recaptcha-globally
+     * @since v4.3.0
+     * Default 'www.google.com' (ReCaptchaBuilder::DEFAULT_RECAPTCHA_API_DOMAIN)
+     *
+     */
+    'api_domain' => 'www.google.com',
+
+    //you can disable the ReCaptcha in for your tests
     'enabled' => env('RECAPTCHA_ENABLED', 'true'),
+    
 ];
 ```
 
-## Usage
+You can publish the translations file with:
+```bash
+php artisan vendor:publish --provider="Combindma\Recaptcha\RecaptchaServiceProvider" --tag="recaptcha-translations"
+```
+
+This is the contents of the published translations file:
 
 ```php
-$recaptcha = new Combindma\Recaptcha();
-echo $recaptcha->echoPhrase('Hello, Combindma!');
+return [
+    'invalid' => 'We could not verify if you are a robot or not. Please refresh the page.',
+];
 ```
+## Usage
+
+### Embed in Blade
+Insert htmlScriptTagJsApi($config) helper before closing </head> tag.
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    {!! htmlScriptTagJsApi(['action' => 'homepage']) !!}
+</head>
+```
+
+Insert recaptchaInput() helper inside your form tag.
+```html
+<form action="" method="POST">
+    @csrf
+    {!! recaptchaInput() !!}
+    <!-- More inputs -->
+</form>
+```
+
+### Validate the token 
+
+Add the rule RecaptchaRule() in your validation rules request or in your controller 
+```php
+ use Combindma\Recaptcha\Rules\RecaptchaRule;
+ 
+ $request->validate([
+       //... other rules
+       
+       //Add this to your validation rule
+       config('recaptcha.token_name') => ['required','string', new RecaptchaRule()]
+       ]);
+```
+If the validation fails, an error will be returned.
 
 ## Testing
 
