@@ -10,7 +10,7 @@
     "authors": [
         {
             "name": "Combind",
-            "email": "hello@combind.ma",
+            "email": "webmaster@combind.ma",
             "role": "Developer"
         }
     ],
@@ -18,12 +18,17 @@
         "php": "^8.0",
         "ext-curl": "*",
         "spatie/laravel-package-tools": "^1.4.3",
-        "illuminate/contracts": "^8.0|^9.0"
+        "illuminate/contracts": "^8.0|^9.0|^10.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.13|^7.0",
-        "phpunit/phpunit": "^9.3",
-        "vimeo/psalm": "^4.4"
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^6.13|^7.0|^8.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {
@@ -39,12 +44,19 @@
         }
     },
     "scripts": {
-        "psalm": "vendor/bin/psalm",
-        "test": "vendor/bin/phpunit --colors=always",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint",
+        "format-v": "vendor/bin/pint -v"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {

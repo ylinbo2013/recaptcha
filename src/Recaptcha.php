@@ -7,6 +7,7 @@ use Illuminate\Support\Arr;
 class Recaptcha
 {
     const DEFAULT_CURL_TIMEOUT = 10;
+
     const DEFAULT_RECAPTCHA_API_DOMAIN = 'www.google.com';
 
     //The Site key
@@ -68,8 +69,8 @@ class Recaptcha
 
     public function setApiUrls(): self
     {
-        $this->api_url = 'https://' . $this->api_domain . '/recaptcha/api/siteverify';
-        $this->api_js_url = 'https://' . $this->api_domain . '/recaptcha/api.js';
+        $this->api_url = 'https://'.$this->api_domain.'/recaptcha/api/siteverify';
+        $this->api_js_url = 'https://'.$this->api_domain.'/recaptcha/api.js';
 
         return $this;
     }
@@ -86,10 +87,10 @@ class Recaptcha
 
     /**
      * Call out to reCAPTCHA and process the response
-     * @param $response
+     *
      * @return array|mixed
      */
-    public function validate($response)
+    public function validate($response): mixed
     {
         if (! $this->enabled) {
             return [
@@ -104,7 +105,7 @@ class Recaptcha
             'response' => $response,
         ]);
 
-        $url = $this->api_url . '?' . $params;
+        $url = $this->api_url.'?'.$params;
 
         if (function_exists('curl_version')) {
             $curl = curl_init($url);
@@ -124,16 +125,13 @@ class Recaptcha
                 'success' => false,
             ];
         }
-        $response = json_decode(trim($curl_response), true);
 
-        return $response;
+        return json_decode(trim($curl_response), true);
     }
 
     /**
      * Write script HTML tag in you HTML code
      * Insert before </head> tag
-     * @param array|null $configuration
-     * @return string
      */
     public function htmlScriptTagJsApi(?array $configuration = []): string
     {
@@ -141,7 +139,7 @@ class Recaptcha
             return '';
         }
 
-        $html = "<script src=\"" . $this->api_js_url . "?render={$this->api_site_key}\"></script>";
+        $html = '<script src="'.$this->api_js_url."?render={$this->api_site_key}\"></script>";
         $action = Arr::get($configuration, 'action', 'homepage');
         $token_name = config('recaptcha.token_name');
         $validate_function = "if (token){

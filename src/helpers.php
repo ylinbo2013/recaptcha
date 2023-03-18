@@ -1,7 +1,7 @@
 <?php
 
 if (! function_exists('recaptcha')) {
-    function recaptcha(): \Combindma\Recaptcha\Recaptcha
+    function recaptcha(): Combindma\Recaptcha\Recaptcha
     {
         return app('recaptcha');
     }
